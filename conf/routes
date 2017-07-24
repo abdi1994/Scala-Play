@@ -5,6 +5,11 @@
 # Home page
 GET     /                           controllers.Application.index
 GET     /second                     controllers.Application.secondPage
+GET     /third               controllers.Application.thirdPage(name = "test")
+GET     /fourth                     controllers.Application.fourthPage
+GET     /fifth                      controllers.Application.fifthPage
+GET     /sixth                      controllers.Application.sixthPage
+GET     /seventh/$number<[0-9]+>    controllers.Application.seventhPage(number: Int)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
