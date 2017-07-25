@@ -7,32 +7,37 @@ import play.api.mvc._
 
 class Application extends Controller {
 
-  def index = Action {
-    Ok(views.html.index("Your new application is ready."))
+  def index : Action[AnyContent] = Action {
+    Ok(views.html.index("Your new application is ready.")).withSession("connected" -> "user@gmail.com")
   }
 
-  def secondPage = Action {
-    Ok(views.html.secondPage())
+  def index2 : Action[AnyContent] = Action { implicit request =>
+    Ok(views.html.index("Your new application is ready.")).withSession(request.session + ("test" -> "yes"))
   }
 
-  def thirdPage(name: String) = Action {
-    Ok("Hello " + name)
+  def secondPage : Action[AnyContent] = Action {
+    Ok(views.html.secondPage()).discardingCookies(DiscardingCookie("CookieExercise"))
   }
 
-  def fourthPage = Action {
+  //Includes cookies
+  def thirdPage(name: String) : Any = Action {
+    Ok("Hello " + name).withCookies(Cookie("CookieExercise", "value"))
+  }
+
+  def fourthPage : Action[AnyContent] = Action {
     Result(
-      header = ResponseHeader(1000000, Map.empty),
+      header = ResponseHeader(helpers.Helper.responseValue, Map.empty),
       body = HttpEntity.Strict(ByteString("Hello world"), Some("text/plain"))
     )
   }
 
-  def fifthPage = Action {
+  def fifthPage : Action[AnyContent] = Action {
     Redirect("/third?name=Bob", MOVED_PERMANENTLY)
   }
 
-  def sixthPage = TODO
+  def sixthPage : Action[AnyContent] = TODO
 
-  def seventhPage(number: Int) = Action {
+  def seventhPage(number: Int) : Action[AnyContent] = Action {
     Ok("Square of " + number + " is " + number*number)
   }
 

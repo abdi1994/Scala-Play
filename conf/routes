@@ -5,7 +5,7 @@
 # Home page
 GET     /                           controllers.Application.index
 GET     /second                     controllers.Application.secondPage
-GET     /third               controllers.Application.thirdPage(name = "test")
+GET     /third                      controllers.Application.thirdPage(name = "test")
 GET     /fourth                     controllers.Application.fourthPage
 GET     /fifth                      controllers.Application.fifthPage
 GET     /sixth                      controllers.Application.sixthPage
