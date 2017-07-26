@@ -13,7 +13,7 @@ GET     /seventh/$number<[0-9]+>    controllers.Application.seventhPage(number: 
 GET     /item                       controllers.Application.listItems
 POST    /item                       controllers.Application.createItem
 POST    /item/submit                controllers.Application.deleteItem
-POST    /item/update                      controllers.Application.updateItem
+POST    /update                     controllers.Application.updateItem
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
