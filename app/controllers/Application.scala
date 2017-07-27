@@ -22,9 +22,9 @@ class Application @Inject()(val messagesApi: MessagesApi) extends Controller wit
     Ok(views.html.index("Your new application is ready.")).withSession(request.session + ("test" -> "yes"))
   }
 
-  def secondPage : Action[AnyContent] = Action {
-    Ok(views.html.secondPage()).discardingCookies(DiscardingCookie("CookieExercise"))
-  }
+//  def secondPage : Action[AnyContent] = Action {
+//    Ok(views.html.secondPage()).discardingCookies(DiscardingCookie("CookieExercise"))
+//  }
 
   //Includes cookies
   def thirdPage(name: String) : Any = Action {
@@ -49,11 +49,11 @@ class Application @Inject()(val messagesApi: MessagesApi) extends Controller wit
   }
 
 
-  def listItems = Action { implicit request =>
+  def listItems : Action[AnyContent] = Action { implicit request =>
     Ok(views.html.Items(Item.items, Item.createItemForm, delItem.deleteItemForm))
   }
 
-  def createItem = Action { implicit request =>
+  def createItem : Action[AnyContent] = Action { implicit request =>
 
     val formValidationResult = Item.createItemForm.bindFromRequest
     formValidationResult.fold({ formWithErrors =>
@@ -64,7 +64,7 @@ class Application @Inject()(val messagesApi: MessagesApi) extends Controller wit
     })
   }
 
-  def deleteItem = Action { implicit  request =>
+  def deleteItem : Action[AnyContent] = Action { implicit  request =>
     val formValidationResult = delItem.deleteItemForm.bindFromRequest
     formValidationResult.fold({ formWithErrors =>
       BadRequest(views.html.Items(Item.items, Item.createItemForm, formWithErrors))
@@ -75,7 +75,7 @@ class Application @Inject()(val messagesApi: MessagesApi) extends Controller wit
   }
 
 
-  def updateItem = Action { implicit request =>
+  def updateItem : Action[AnyContent] = Action { implicit request =>
 
     Ok(views.html.Items(Item.items, Item.createItemForm.fill(Item.items.head), delItem.deleteItemForm))
 
