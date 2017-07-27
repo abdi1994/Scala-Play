@@ -13,3 +13,8 @@ libraryDependencies ++= Seq( jdbc , cache , ws , specs2 % Test )
 unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/test" )
 
 //wartremoverErrors ++= Warts.unsafe
+
+libraryDependencies ++= Seq(
+  "org.reactivemongo" %% "play2-reactivemongo" % "0.12.5-play25")
+
+routesGenerator := InjectedRoutesGenerator

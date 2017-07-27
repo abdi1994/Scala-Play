@@ -19,12 +19,12 @@
     @helper.form(routes.Application.updateItem()){
         @helper.inputText(form("name"))
         @helper.inputText(form("price"))
-        @helper.inputText(form("description"))
+        @helper.textarea(form("description"))
         @helper.inputText(form("maker"))
         @helper.inputText(form("discount"))
         @helper.inputText(form("image"))
 
-        <button type="submit">Create CD</button>
+        <button type="submit">Update CD</button>
     }
 
 

@@ -77,7 +77,7 @@ class Application @Inject()(val messagesApi: MessagesApi) extends Controller wit
 
   def updateItem : Action[AnyContent] = Action { implicit request =>
 
-    Ok(views.html.Items(Item.items, Item.createItemForm.fill(Item.items.head), delItem.deleteItemForm))
+    Ok(views.html.secondPage(Item.items, Item.createItemForm.fill(Item.items.head), delItem.deleteItemForm))
 
   }
 
